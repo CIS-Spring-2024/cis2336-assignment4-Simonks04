@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simon's Cafe: Lunch</title>
+    <style>
+        header {
+            background-image: url(../Images/\\Bg1.png);
+            background-position: center;
+            background-size: cover;
+            height: 400px;
+            font-size: large;
+            padding: 20px;
+            position: relative;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333;
+            background-color: #d9d1bb;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #d9d1bb;
+            display: inline;
+            font-size: 65px;
+            margin-right: 20px;
+        }
+
+        h3{
+            color: #5b4624;
+        }
+
+        h2{
+            color: #5b4624;
+        }
+
+        h4{
+            color: #578d63;
+        }
+
+        p{
+            color: #5b4624;
+        }
+
+        img {
+            vertical-align: middle;
+            max-width: 100%;
+            width: 250px;
+            height: 250px;
+        }
+        
+        #logo{
+            vertical-align: middle;
+            max-width: 150px;
+            max-height: 150px;
+            }
+
+        footer{
+            background-color: #f6f1e1;
+            text-align: center;
+        }
+
+        #top_bar_nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        a:hover {
+            color: #d9d1bb;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="logo-and-title">
+            <img src="../Images/Cafe_Logo.jpg" id="logo"> <!--Found on google images.-->
+            <h1>Cafe Net</h1> <!--Cafe name due to the logo.-->
+        </div>
+        <nav id="top_bar_nav">
+            <ul>
+                <li><a href="../HTML/Home.html">Home</a></li>
+                <li><a href="../HTML/bio.html">About us</a></li>
+                <li><a href="../HTML/Main Menu.html">Menu </a></li>
+                <li><a href="../HTML/contacts.html">Contact us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="everything">
+    
+    <h4 id="menu_select">Select from here for a more detailed view of each of the menu categories we offer:</h4>
+<select id = "menu_redirect" onchange="la(this.value)"> 
+    <option disabled selected></option>
+    <option value="Main Menu.html">Main Menu</option>
+    <option value="Lunch.html">Lunch</option>
+    <option value="Desert.html">Bakery</option>
+    <option value="Drinks.html">Drinks</option>
+
+</select>
+
+    <script>
+        function la(src)
+        {
+            window.location=src;
+        }
+    </script>
+
+    <h2>Sandwich - <span style="color: #578d63">$12</span></h2> <!--Description from: frankspizza-->
+    <img id="sandwich"  src="../Images/sandwich.webp">
+    <p>Our sandwiches are made to order using wholesome ingredients. Try them once and you'll come back for more.</p>
+
+    <h4>Philly Cheesesteak</h4>
+    <p>A delicious grilled sandwich with thinly sliced beef, grilled green peppers and onions. Topped with melted provolone cheese on a hoagie bun.</p>
+
+    <h4>Chicken Sandwich</h4>
+    <p>Same as the Philly Cheesesteak above, but with tender chicken breast.</p>
+
+    <h4>Veg Sandwich</h4>
+    <p>Sautéed onions, mushrooms, green peppers, tomatoes, and black olives, plus fresh spinach and provolone cheese on a hoagie bun.</p>
+
+    <h2>Soup - <span style="color: #578d63">$10</span></h2> <!--Source for a lot of this menu stuff and the descriptions: https://www.frankspizza.com/menuonepage-->
+    <img src="../Images/soup.jpg">
+    <p>Indulge in our comforting bowl of velvety goodness.</p>
+
+    <h4>Chicken sweet corn soup</h4>
+
+    <p>  A hearty blend of tender chicken and sweet corn kernels, simmered to perfection. </p>
+
+    <h4>Tomato soup</h4>
+
+    <p>A classic blend of ripe tomatoes, simmered to perfection for a comforting and flavorful experience.</p>
+
+    <h2>Lasagna - <span style="color: #578d63">$14</span></h2>
+    <img id="lasagna" src="../Images/Lag.jpg">
+    <p>Freshly baked when ordered. Comes with 3 freshly baked breadsticks.</p>
+
+    <h4>Beef Lasagna</h4>
+    <p>A delicious choice with seasoned ground beef and house spices.</p>
+
+    <h4>Chicken Lasagna</h4>
+    <p>Similar to the Beef Lasagna, but with chicken instead of beef.</p>
+    <br><br>
+    </div>
+    
+
+
+    <footer>
+        <br><br>
+        <p>@Copyright Reserved</p>
+        <br>
+        <p>Insta: Cafe_Net_UH</p>
+        <p>Twitter: Cafte_Net</p>
+        <p>Youtube: Cafte_Net</p>
+        <br>
+        <br>
+        <p>14004 University Blvd, Sugar Land, TX 77479, United States</p>
+        <br>
+<!--        <img src="../Images/cafe_location.png">-->
+<div class="map-div"> 
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.9786506116525!2d-95.6530468253393!3d29.57522447516321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2e2962848a61%3A0xa38c5abd5632d00f!2sUniversity%20of%20Houston%20at%20Sugar%20Land!5e0!3m2!1sen!2sus!4v1709519323806!5m2!1sen!2sus" width="850" height="550" ></iframe>     </div>
+        <br><br><br><br>
+    </footer>
+</body>
+</html>

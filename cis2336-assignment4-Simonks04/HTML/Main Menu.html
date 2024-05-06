@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simon's Cafe: Main Menu</title>
+    <style>
+        header {
+            background-image: url(../Images/Bg1.png);
+            background-position: center;
+            background-size: cover;
+            height: 400px;
+            font-size: large;
+            padding: 20px;
+            position: relative;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333;
+            background-color: #d9d1bb;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #d9d1bb;
+            display: inline;
+            font-size: 65px;
+            margin-right: 20px;
+        }
+
+        a:hover {
+            color: #d9d1bb;
+        }
+
+        img {
+            vertical-align: middle;
+            max-width: 100%;
+            width: 250px;
+            height: 250px;
+        }
+
+        #logo {
+            vertical-align: middle;
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        footer {
+            background-color: #f6f1e1;
+            text-align: center;
+            clear: both;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        #top_bar_nav {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #menu-section {
+            margin-top: 50px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #5b4624;
+        }
+
+        h4 {
+            color: #5b4624;
+        }
+
+        #menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        #menu-item {
+            text-align: center;
+        }
+
+        #menu_img {
+            height: 200px;
+        }
+
+        button {
+            color: #f6f1e1;
+            background-color: #578d63;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        #shopping-cart {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart-items li {
+            margin-bottom: 10px;
+        }
+
+        #cart-items li button {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div id="logo-and-title">
+        <img src="../Images/Cafe_Logo.jpg" id="logo">
+        <h1>Cafe Net</h1>
+    </div>
+    <nav id="top_bar_nav">
+        <ul>
+            <li><a href="../HTML/Home.html">Home</a></li>
+            <li><a href="../HTML/bio.html">About us</a></li>
+            <li><a href="../HTML/Main Menu.html">Menu </a></li>
+            <li><a href="../HTML/contacts.html">Contact us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<hr>
+
+<h4 id="menu_select">Select from here for a more detailed view of each of the menu categories we offer:</h4>
+
+<select id="menu_redirect" onchange="la(this.value)">
+    <option disabled selected></option>
+    <option value="Main Menu.html">Main Menu</option>
+    <option value="Lunch.html">Lunch</option>
+    <option value="Desert.html">Bakery</option>
+    <option value="Drinks.html">Drinks</option>
+</select>
+
+<hr>
+
+<script>
+    function la(src) {
+        window.location = src;
+    }
+</script>
+
+<h4>Shopping cart:</h4>
+<div id="shopping-cart">
+    <ul id="cart-items"></ul>
+    <p>Total Cost: $<span id="total-cost">0.00</span></p>
+</div>
+
+<script>
+    let cart = [];
+    let totalCost = 0;
+
+
+
+    function addToCart(item, price) {
+        cart.push({ item, price });
+        totalCost += price;
+        displayCart();
+    }
+
+    function displayCart() {
+        const cartItemsElement = document.getElementById('cart-items');
+        const totalCostElement = document.getElementById('total-cost');
+
+    function removeFromCart(index) {
+        totalCost -= cart[index].price;
+        cart.splice(index, 1);
+        displayCart();
+    }
+
+    cartItemsElement.innerHTML = '';
+
+    cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${item.item} - $${item.price}`;
+            
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = () => removeFromCart(index);
+
+        li.appendChild(removeButton);
+        cartItemsElement.appendChild(li);
+    });
+
+    totalCostElement.textContent = totalCost.toFixed(2);
+    }
+</script>
+
+<button onclick="processOrder()">Process Order</button>
+
+<script>
+    function processOrder() {
+        if (cart.length === 0) {
+            alert('Your shopping cart is empty.');
+        }
+        else{
+    
+        alert('The total cost of your order is: $' + totalCost);}
+    
+        cart = [];
+        totalCost = 0;
+        displayCart();
+    }
+    
+</script>
+<hr>
+<div id="menu-section">
+    <h3>Lunch</h3>
+    <div id="menu-items">
+        <div id="menu-item">
+            <img src="../Images/sandwich.webp">
+            <h4>Sandwich - <span style="color: #578d63">$12</span></h4>
+            <button onclick="addToCart('Philly Cheesesteak Sandwich', 12.00)">Add to Cart Philly Cheesesteak Sandwich</button>
+            
+            <button onclick="addToCart('Chicken Sandwich', 12.00)">Chicken Sandwich</button>
+
+            <button onclick="addToCart('Veg Sandwich', 12.00)">Veg Sandwich</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/soup.jpg">
+            <h4>Soup - <span style="color: #578d63">$10</span></h4>
+            <button onclick="addToCart('Chicken sweet corn soup', 10.00)">Chicken sweet corn soup</button>
+
+            <button onclick="addToCart('Tomato soup', 10.00)">Tomato soup</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Lag.jpg">
+            <h4>Lasagna - <span style="color: #578d63">$14</span></h4>
+            <button onclick="addToCart('Beef Lasagna', 14.00)">Beef Lasagna</button>
+
+            <button onclick="addToCart('Chicken Lasagna', 14.00)">Chicken Lasagna</button>
+        </div>
+    </div>
+</div>
+
+<div id="menu-section">
+    <h3>Bakery</h3>
+    <div id="menu-items">
+        <div id="menu-item">
+            <img src="../Images/cookie.jpg">
+            <h4>Cookies - <span style="color: #578d63">$5</span></h4>
+            <button onclick="addToCart('Warmed up cookies', 5)">Warmed up</button>
+
+            <button onclick="addToCart('None warmed up cookies', 5)">None warmed up</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Tiramisu.jpg">
+            <h4>Tiramisu - <span style="color: #578d63">$5</span></h4>
+            <button onclick="addToCart('Tiramisu', 5.00)">Add to Cart Tiramisu</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Croissant.jpg">
+            <h4>Croissant  - <span style="color: #578d63">$5</span></h4>
+
+            <button onclick="addToCart('Warmed up cookies', 5)">Warmed up</button>
+
+            <button onclick="addToCart('None warmed up cookies', 5)">None warmed up</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Chocolate croissant.jfif">
+            <h4>Chocolate Croissant  - <span style="color: #578d63">$5</span></h4>
+
+            <button onclick="addToCart('Warmed up cookies', 5)">Warmed up</button>
+
+            <button onclick="addToCart('None warmed up cookies', 5)">None warmed up</button>
+
+        </div>
+        <div id="menu-item">
+            <img src="../Images/brownie.jfif">
+            <h4>Brownie - <span style="color: #578d63">$5</span></h4>
+
+            <button onclick="addToCart('Warmed up brownie', 5)">Warmed up</button>
+
+            <button onclick="addToCart('None warmed up brownie', 5)">None warmed up</button>
+
+        </div>
+        <div id="menu-item">
+            <img src="../Images/ice cream.jfif">
+            <h4>Ice cream  - <span style="color: #578d63">$5</span></h4>
+            <h5 style="color: #578d63;">Flavors:</h5>
+            <button onclick="addToCart('Vanilla', 5)">Vanilla</button>
+
+            <button onclick="addToCart('Chocolate', 5)">Chocolate</button>
+
+            <button onclick="addToCart('Strawberry', 5)">Strawberry</button>
+
+            <button onclick="addToCart('Mango', 5)">Mango</button>
+            <br>
+            <h5 style="color: #578d63;">Cone:</h5>
+            <button onclick="addToCart('On normal cone', 0)">On normal cone</button>
+
+            <button onclick="addToCart('On waffle cone', 0.86)">On waffle cone</button>
+
+            <button onclick="addToCart('On cup', 0)">On a cup</button>
+        </div>
+    </div>
+</div>
+
+<div id="menu-section">
+    <h3>Drinks</h3>
+    <br>
+    <div id="menu-items">
+        <div id="menu-item">
+            <img src="../Images/smoothie.jfif">
+            <h4>Smoothie</h4>
+            <p>Small <b><span style="color: #578d63">$3.80</span></b> or Large<b> <span style="color: #578d63">$4</span></b></p>
+            <h5 style="color: #578d63;">Size:</h5>
+            <button onclick="addtoCart('Small', 3.80)">Small</button>
+
+            <button onclick="addtoCart('Large', 4)">Large</button>
+            <br>
+
+            <h5 style="color: #578d63;">Flavors:</h5>
+            <button onclick="addToCart('Vanilla', 0)">Vanilla</button>
+
+            <button onclick="addToCart('Mango', 0)">Mango</button>
+
+            <button onclick="addToCart('Peace and apricot', 0)">Peace and apricot</button>
+
+            <button onclick="addToCart('Strawberry', 0)">Strawberry</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Latte.jpg">
+            <h4>Latte</h4>
+
+            <p>Small <b><span style="color: #578d63">$3.60</span></b> or Large<b> <span style="color: #578d63">$4</span></b></p>
+            <h5 style="color: #578d63;">Size:</h5>
+            <button onclick="addtoCart('Small', 3.60)">Small</button>
+
+            <button onclick="addtoCart('Large', 4)">Large</button>
+            <br>
+
+            <h5 style="color: #578d63;">Flavors:</h5>
+            <button onclick="addToCart('French Vanilla', 0)">French Vanilla</button>
+
+            <button onclick="addToCart('Hazelnut', 0)">Hazelnut</button>
+
+
+        </div>
+        <div id="menu-item">
+            <img src="../Images/Monster.jpeg">
+            <h4>Energy Drink</h4>
+            
+            <button onclick="addtoCart('Monster Energy', 2.90)">Monster Energy</button>
+        </div>
+        <div id="menu-item">
+            <img src="../Images/coke.jpg">
+            <h4>Soft Drink</h4>
+            <button onclick="addToCart('Coke', 3)">Coke</button>
+
+            <button onclick="addToCart('Sprite', 2.60)">Sprite</button>
+
+            <button onclick="addToCart('Diet Coke', 3.39)">Diet Coke</button>
+
+            <button onclick="addToCart('Fanta', 2.25)">Fanta</button>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <br><br>
+    <p>@Copyright Reserved</p>
+    <br>
+    <p>Insta: Cafe_Net_UH</p>
+    <p>Twitter: Cafte_Net</p>
+    <p>Youtube: Cafte_Net</p>
+    <br>
+    <br>
+    <p>14004 University Blvd, Sugar Land, TX 77479, United States</p>
+    <br>
+    <div class="map-div">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.9786506116525!2d-95.6530468253393!3d29.57522447516321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2e2962848a61%3A0xa38c5abd5632d00f!2sUniversity%20of%20Houston%20at%20Sugar%20Land!5e0!3m2!1sen!2sus!4v1709519323806!5m2!1sen!2sus" width="850" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</footer>
+
+</body>
+</html>
